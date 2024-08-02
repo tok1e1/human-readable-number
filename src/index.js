@@ -40,20 +40,26 @@ module.exports = function toReadable(number) {
         let tensNumberAfterFloor = number % 10;
         return (
             tens[tensNumber] +
-            (tensNumberAfterFloor ? " " + beforeTwety[tensNumberAfterFloor] : "")
+            (tensNumberAfterFloor
+                ? " " + beforeTwety[tensNumberAfterFloor]
+                : "")
         );
     } else if (number < 1000) {
         let hundredNumber = beforeTwety[Math.floor(number / 100)];
         let afterFloor = number % 100;
         if (afterFloor < 20) {
-            return hundredNumber + " hundred" + (afterFloor ? " " + beforeTwety[afterFloor] : "");
+            return (
+                hundredNumber +
+                " hundred" +
+                (afterFloor ? " " + beforeTwety[afterFloor] : "")
+            );
         } else {
             let tensNumber = Math.floor(afterFloor / 10);
             let tensAfterFloor = afterFloor % 10;
             return (
                 hundredNumber +
-                " hundred" +
-                (tensNumber ? " " + tens[tensNumber] : "") +
+                " hundred " +
+                tens[tensNumber] +
                 (tensAfterFloor ? " " + beforeTwety[tensAfterFloor] : "")
             );
         }
